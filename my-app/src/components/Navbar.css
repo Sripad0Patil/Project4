@@ -158,7 +158,8 @@
 }
 
 .user-dropdown a,
-.logout-button {
+.logout-button,
+.signup-button {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -171,9 +172,22 @@
 }
 
 .user-dropdown a:hover,
-.logout-button:hover {
+.logout-button:hover,
+.signup-button:hover {
   background-color: rgba(0, 71, 171, 0.1);
   color: #0047ab;
+}
+
+.signup-button {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding-top: 0.75rem;
 }
 
 .logout-button {
@@ -219,17 +233,20 @@
 }
 
 .dark-theme .user-dropdown a,
-.dark-theme .logout-button {
+.dark-theme .logout-button,
+.dark-theme .signup-button {
   color: #ffffff;
 }
 
 .dark-theme .user-dropdown a:hover,
-.dark-theme .logout-button:hover {
+.dark-theme .logout-button:hover,
+.dark-theme .signup-button:hover {
   background-color: rgba(255, 255, 255, 0.1);
   color: #60a5fa;
 }
 
-.dark-theme .logout-button {
+.dark-theme .logout-button,
+.dark-theme .signup-button {
   border-top-color: rgba(255, 255, 255, 0.1);
 }
 

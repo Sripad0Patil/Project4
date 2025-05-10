@@ -54,7 +54,7 @@
     transform: translateX(-50%);
     width: 80px;
     height: 3px;
-    background: #ffffff;
+    background: linear-gradient(90deg, #0047ab, #007bff);
 }
 
 .hero p {

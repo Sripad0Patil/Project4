@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { FaRobot, FaTimes } from 'react-icons/fa';
 import '../styles/ChatBot.css';
 
 const ChatBot = () => {
@@ -202,7 +203,7 @@ const ChatBot = () => {
         className="chatbot-toggle fade-in"
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? '✕' : '💬'}
+        {isOpen ? <FaTimes /> : <FaRobot />}
       </button>
 
       {isOpen && (

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaMoon, FaSun, FaBars, FaUserCircle, FaCog, FaSignOutAlt } from 'react-icons/fa';
+import { FaMoon, FaSun, FaBars, FaUserCircle, FaCog, FaSignOutAlt, FaUserPlus } from 'react-icons/fa';
 import Logo from './Logo';
 import "./Navbar.css";
 
@@ -87,6 +87,16 @@ const Navbar = ({ isDarkMode, toggleTheme, toggleSidebar, isSidebarOpen }) => {
               <div className="user-name">User: {userData?.name || 'Guest'}</div>
               <div className="user-email">{userData?.email || 'guest@example.com'}</div>
             </div>
+            <button 
+              className="signup-button"
+              onClick={() => {
+                navigate('/auth');
+                setIsDropdownOpen(false);
+              }}
+            >
+              <FaUserPlus />
+              <span>Sign Up</span>
+            </button>
             <button 
               className="logout-button"
               onClick={handleLogout}
