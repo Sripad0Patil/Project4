@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import AppRoutes from './AppRoutes';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import ChatBot from './components/ChatBot';
 import './App.css';
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
               </div>
             </main>
           </div>
+          <ChatBot />
         </div>
       </div>
     </Router>
