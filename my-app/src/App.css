@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
   /* Light theme variables */
   --primary-color: #2563eb;
@@ -34,11 +36,15 @@
   box-sizing: border-box;
 }
 
+body, .app, .app-wrapper, .app-container, .main-content, .content-wrapper, .sidebar, .sidebar-content, .sidebar-item, .submenu-item, .form-title, .form-card, .form-header, .input-label, .input-field, .nav-button, .chatbot-container, .chatbot-window, .chatbot-header, .chatbot-messages, .chatbot-input, .review-title, .review-label, .review-value, .terms-title, .terms-content, .terms-list, .terms-checkbox, .navigation-buttons, h1, h2, h3, h4, h5, h6, p, label, input, select, button, div {
+  font-family: 'Inter', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
+}
+
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   background-color: var(--background-color);
-  color: var(--text-primary);
-  line-height: 1.5;
+  /* color: var(--text-primary); */
+  color: #2f6ed5;
+  line-height: 2.5;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -60,17 +66,18 @@ body {
   display: flex;
   flex: 1;
   position: relative;
-  margin-top: 64px; /* Height of navbar */
-  min-height: calc(100vh - 64px);
+  height: calc(100vh - 64px); /* 64px is the navbar height */
+  padding-top: 0;
 }
 
 .main-content {
   flex: 1;
-  padding: 24px;
-  transition: margin-left 0.3s ease;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  height: 100%;
+  overflow-y: auto;
+  padding: 24px;
 }
 
 .main-content.sidebar-open {

@@ -7,7 +7,8 @@ import {
   FaRobot, 
   FaCog, 
   FaQuestionCircle,
-  FaChevronDown
+  FaChevronDown,
+  FaUserCircle
 } from 'react-icons/fa';
 import './Sidebar.css';
 
@@ -41,15 +42,9 @@ const Sidebar = ({ isOpen, onClose }) => {
       ]
     },
     {
-      title: 'BankBot',
-      icon: <FaRobot />,
-      path: '/bankbot',
-      color: '#0047ab'
-    },
-    {
-      title: 'Settings',
-      icon: <FaCog />,
-      path: '/settings',
+      title: 'About Us',
+      icon: <FaUserCircle />,
+      path: '/about',
       color: '#0047ab'
     },
     {
@@ -108,7 +103,12 @@ const Sidebar = ({ isOpen, onClose }) => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.1 }}
             >
-              {item.subItems ? (
+              {item.title === 'Dashboard' && ['/auth', '/employee-auth'].includes(location.pathname) ? (
+                <span className="sidebar-item" style={{ cursor: 'default', color: '#2563eb', fontWeight: 700, fontSize: 18, display: 'flex', alignItems: 'center', gap: 8 }}>
+                  {item.icon}
+                  <span className="title">{item.title}</span>
+                </span>
+              ) : item.subItems ? (
                 <>
                   <motion.button 
                     className={`sidebar-item ${isActive(item.path) ? 'active' : ''}`}

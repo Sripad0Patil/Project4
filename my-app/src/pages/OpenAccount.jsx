@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./OpenAccount.css";
 import LiveLivenessCheck from "../components/LiveLivenessCheck";
 
@@ -27,6 +27,26 @@ function OpenAccount() {
   });
   const [errors, setErrors] = useState({});
   const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+
+  // Add cleanup function for webcam
+  const stopWebcam = () => {
+    const videoElement = document.querySelector('video');
+    if (videoElement && videoElement.srcObject) {
+      const tracks = videoElement.srcObject.getTracks();
+      tracks.forEach(track => {
+        track.stop();
+        track.enabled = false;
+      });
+      videoElement.srcObject = null;
+    }
+  };
+
+  // Add useEffect for cleanup
+  useEffect(() => {
+    return () => {
+      stopWebcam();
+    };
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -63,6 +83,7 @@ function OpenAccount() {
     });
   };
 
+  // Modify handleFaceVerification to include webcam cleanup
   const handleFaceVerification = (success) => {
     if (success) {
       setFormData(prev => ({
@@ -75,7 +96,16 @@ function OpenAccount() {
         faceVerified: null
       }));
     }
+    // Stop webcam after verification
+    stopWebcam();
   };
+
+  // Add cleanup when changing steps
+  useEffect(() => {
+    if (currentStep !== 3) {
+      stopWebcam();
+    }
+  }, [currentStep]);
 
   const validateStep = (step) => {
     const errors = {};
@@ -123,6 +153,9 @@ function OpenAccount() {
     console.log('Current step:', currentStep);
     console.log('Files state:', files);
     console.log('Form data:', formData);
+    
+    // Stop webcam when clicking next
+    stopWebcam();
     
     if (currentStep === 2) {
       const hasAllFiles = Boolean(files.panCard && files.aadhaar && files.signature);
@@ -373,25 +406,6 @@ function OpenAccount() {
                             {errors.age}
                           </p>}
                         </div>
-
-                        <div className="input-group">
-                          <label className="input-label">PAN Number</label>
-                          <input
-                            type="text"
-                            name="panNumber"
-                            value={formData.panNumber}
-                            onChange={handleInputChange}
-                            className="input-field"
-                            placeholder="Enter your PAN number"
-                            maxLength={10}
-                          />
-                          {errors.panNumber && <p className="error-message">
-                            <svg className="error-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            {errors.panNumber}
-                          </p>}
-                        </div>
                       </div>
                     </div>
 
@@ -463,6 +477,25 @@ function OpenAccount() {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             {errors.aadhaarNumber}
+                          </p>}
+                        </div>
+
+                        <div className="input-group">
+                          <label className="input-label">PAN Number</label>
+                          <input
+                            type="text"
+                            name="panNumber"
+                            value={formData.panNumber}
+                            onChange={handleInputChange}
+                            className="input-field"
+                            placeholder="Enter your PAN number"
+                            maxLength={10}
+                          />
+                          {errors.panNumber && <p className="error-message">
+                            <svg className="error-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            {errors.panNumber}
                           </p>}
                         </div>
                       </div>

@@ -6,6 +6,9 @@ import OpenAccount from './pages/OpenAccount';
 import TrackStatus from './pages/TrackStatus';
 import Dashboard from './pages/Dashboard';
 import Auth from './pages/Auth';
+import About from './pages/About';
+import EmployeeAuth from './pages/EmployeeAuth';
+import EmployeeDashboard from './pages/EmployeeDashboard';
 
 function AppRoutes() {
   return (
@@ -15,6 +18,9 @@ function AppRoutes() {
       <Route path="/open-account" element={<OpenAccount />} />
       <Route path="/track-status" element={<TrackStatus />} />
       <Route path="/auth" element={<Auth />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/employee-auth" element={<EmployeeAuth />} />
+      <Route path="/employee-dashboard" element={<EmployeeDashboard />} />
     </Routes>
   );
 }
